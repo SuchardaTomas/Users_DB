@@ -9,34 +9,36 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         boolean loop = false;
 
-        while (loop == false) {
-            try {
-                DatabaseManager.getData();
+        try {
+            while (loop == false) {
+                    DatabaseManager.getData();
 
-                System.out.println("\nBudete chtít přidat nového uživatele? (ano/ne)");
-                String answer = sc.nextLine();
+                    System.out.println("\nBudete chtít přidat nového uživatele? (ano/ne)");
+                    String answer = sc.nextLine();
 
-                switch (answer) {
-                    case "ano" -> {
-                        System.out.println("Zadejte jméno");
-                        String name = sc.nextLine();
-                        System.out.println("Zadejte příjmení");
-                        String surname = sc.nextLine();
-                        System.out.println("Zadejte věk");
-                        int age = sc.nextInt();
+                    switch (answer) {
+                        case "ano" -> {
+                            System.out.println("Zadejte jméno");
+                            String name = sc.nextLine();
+                            System.out.println("Zadejte příjmení");
+                            String surname = sc.nextLine();
+                            System.out.println("Zadejte věk");
+                            int age = sc.nextInt();
 
-                        DatabaseManager.setData(name, surname, age);
-                        System.out.println("Data se uložila");
+                            DatabaseManager.setData(name, surname, age);
+                            System.out.println("Data se uložila \n");
+                            sc.nextLine();
+                        }
+                        case "ne" -> {
+                            System.out.println("Program se ukončuje");
+                            loop = true;
+                        }
                     }
-                    case "ne" -> {
-                        System.out.println("Program se ukončuje");
-                        loop = true;
-                    }
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
 
     }
 }
