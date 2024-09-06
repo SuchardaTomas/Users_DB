@@ -18,10 +18,11 @@ public class DatabaseManager {
         ResultSet set = st.executeQuery();
 
         while (set.next()) {
-            System.out.print(set.getInt("id") + " ");
-            System.out.print(set.getString("name") +" ");
-            System.out.print(set.getString("surname") + " ");
-            System.out.println(set.getInt("age"));
+            System.out.print("id:" + set.getInt("id") + " ");
+            System.out.print("jméno:" + set.getString("name") + " ");
+            System.out.print("přijmení:" + set.getString("surname") + " ");
+            System.out.println("věk:" + set.getInt("age") + " ");
+            System.out.println();
         }
     }
 
@@ -33,9 +34,10 @@ public class DatabaseManager {
         st.execute();
     }
 
-    public static void deleteData(String name) throws SQLException {
-        PreparedStatement st = con.prepareStatement("DELETE FROM users Where name = ?");
+    public static void deleteData(String name, String surname) throws SQLException {
+        PreparedStatement st = con.prepareStatement("DELETE FROM users Where name = ? AND surname = ?");
         st.setString(1, name);
+        st.setString(2, surname);
         st.execute();
     }
 }

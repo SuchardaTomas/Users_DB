@@ -24,7 +24,10 @@ public class Manager {
         System.out.println("Zadejte jméno uživatele");
         String name = sc.nextLine();
 
-        DatabaseManager.deleteData(name);
+        System.out.println("Zadejte přijmení uživatele");
+        String surname = sc.nextLine();
+
+        DatabaseManager.deleteData(name, surname);
         System.out.println("Uživatel byl smazán");
     }
 

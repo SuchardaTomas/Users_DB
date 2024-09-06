@@ -10,7 +10,7 @@ public class Main {
 
             while (true) {
 
-                    System.out.println("Správa uživatelů: \n1. Přidat uživatele \n2.Odstranit uživatele  \n3. Vypsat všechny uživatele \n4. Konec");
+                    System.out.println("Správa uživatelů: \n1. Přidat uživatele \n2. Odstranit uživatele  \n3. Vypsat všechny uživatele \n4. Konec");
                     int answer = sc.nextInt();
 
                     switch (answer) {
