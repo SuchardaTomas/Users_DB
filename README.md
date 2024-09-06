@@ -1,4 +1,4 @@
-a<h1>Systém pro správu uživatelů</h1>
+<h1>Systém pro správu uživatelů</h1>
 
 <p> Tento projekt je ukázkou mých zkušeností v jazyce Java a práci s relačními databázemi pomocí JDBC. 
 Aplikace umožňuje správu uživatelů – přidávání, odstraňování a zobrazování všech uživatelů z databáze.</p>
