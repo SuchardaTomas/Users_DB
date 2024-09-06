@@ -2,8 +2,18 @@ package org.example;
 import java.sql.*;
 
 public class DatabaseManager {
+
+    static Connection con;
+
+    static {
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/accounts", "root", "" );
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static void getData() throws SQLException {
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/accounts", "root", "" );
         PreparedStatement st = con.prepareStatement("SELECT * FROM users");
         ResultSet set = st.executeQuery();
 
@@ -16,11 +26,16 @@ public class DatabaseManager {
     }
 
     public static void setData(String name, String surname, Integer age) throws SQLException {
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/accounts", "root", "" );
         PreparedStatement st = con.prepareStatement("INSERT INTO users VALUES (NULL, ?, ?, ?)");
         st.setString(1, name);
         st.setString(2, surname);
         st.setInt(3, age);
+        st.execute();
+    }
+
+    public static void deleteData(String name) throws SQLException {
+        PreparedStatement st = con.prepareStatement("DELETE FROM users Where name = ?");
+        st.setString(1, name);
         st.execute();
     }
 }

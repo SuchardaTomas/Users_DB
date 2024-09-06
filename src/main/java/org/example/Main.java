@@ -4,41 +4,23 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
         Scanner sc = new Scanner(System.in);
-        boolean loop = false;
 
-        try {
-            while (loop == false) {
-                    DatabaseManager.getData();
+            while (true) {
 
-                    System.out.println("\nBudete chtít přidat nového uživatele? (ano/ne)");
-                    String answer = sc.nextLine();
+                    System.out.println("Správa uživatelů: \n1. Přidat uživatele \n2.Odstranit uživatele  \n3. Vypsat všechny uživatele \n4. Konec");
+                    int answer = sc.nextInt();
 
                     switch (answer) {
-                        case "ano" -> {
-                            System.out.println("Zadejte jméno");
-                            String name = sc.nextLine();
-                            System.out.println("Zadejte příjmení");
-                            String surname = sc.nextLine();
-                            System.out.println("Zadejte věk");
-                            int age = sc.nextInt();
-
-                            DatabaseManager.setData(name, surname, age);
-                            System.out.println("Data se uložila \n");
-                            sc.nextLine();
-                        }
-                        case "ne" -> {
-                            System.out.println("Program se ukončuje");
-                            loop = true;
-                        }
+                        case 1 -> Manager.addUser();
+                        case 2 -> Manager.deleteUser();
+                        case 3 -> Manager.getAllUsers();
+                        case 4 -> Manager.quit();
+                        default -> System.out.println("Neplatná volba");
                     }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
 
     }
 }
