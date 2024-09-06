@@ -5,6 +5,7 @@ public class DatabaseManager {
 
     static Connection con;
 
+    // Inicializace připojení k databázi
     static {
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/accounts", "root", "" );
@@ -13,6 +14,11 @@ public class DatabaseManager {
         }
     }
 
+    /**
+     * Vypíše všechna data uživatelů
+     *
+     * @throws SQLException Pokud dojde k chybě při komunikaci s databází
+     */
     public static void getData() throws SQLException {
         PreparedStatement st = con.prepareStatement("SELECT * FROM users");
         ResultSet set = st.executeQuery();
@@ -26,6 +32,13 @@ public class DatabaseManager {
         }
     }
 
+    /**
+     *
+     * @param name Jméno uživatele, kterého chceme přidat
+     * @param surname Přijmení uživatele, kterého chceme přidat
+     * @param age Věk uživatele, kterého chceme přidat
+     * @throws SQLException Pokud dojde k chybě při komunikaci s databází
+     */
     public static void setData(String name, String surname, Integer age) throws SQLException {
         PreparedStatement st = con.prepareStatement("INSERT INTO users VALUES (NULL, ?, ?, ?)");
         st.setString(1, name);
@@ -34,6 +47,12 @@ public class DatabaseManager {
         st.execute();
     }
 
+    /**
+     *
+     * @param name Jméno uživatele, kterého chceme odstranit
+     * @param surname Přijmení uživatele, kterého chceme odstranit
+     * @throws SQLException Pokud dojde k chybě při komunikaci s databází
+     */
     public static void deleteData(String name, String surname) throws SQLException {
         PreparedStatement st = con.prepareStatement("DELETE FROM users Where name = ? AND surname = ?");
         st.setString(1, name);
